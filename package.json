@@ -7,6 +7,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@netlify/blobs": "^11.0.2",
     "@netlify/database": "^2.0.0",
     "@tailwindcss/vite": "4.2.2",
     "@tanstack/react-router": "1.168.22",

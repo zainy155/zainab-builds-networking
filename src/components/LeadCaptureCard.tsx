@@ -12,6 +12,10 @@ export function LeadCaptureCard() {
   const [businessTitle, setBusinessTitle] = useState('')
   const [countryCode, setCountryCode] = useState('+1')
   const [whatsapp, setWhatsapp] = useState('')
+  const [emailConsent, setEmailConsent] = useState(false)
+  const [whatsappConsent, setWhatsappConsent] = useState(false)
+  const [website, setWebsite] = useState('')
+  const [renderedAt] = useState(() => Date.now())
   const [status, setStatus] = useState<Status>('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -38,6 +42,10 @@ export function LeadCaptureCard() {
           businessTitle,
           whatsappCountryCode: countryCode,
           whatsappNumber: whatsapp,
+          emailConsent,
+          whatsappConsent,
+          website,
+          renderedAt,
         },
       })
       setStatus('success')
@@ -64,6 +72,17 @@ export function LeadCaptureCard() {
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          type="text"
+          name="website"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+        />
+
         <Field label="Full name" htmlFor="lead-name">
           <input
             id="lead-name"
@@ -99,7 +118,7 @@ export function LeadCaptureCard() {
         </Field>
 
         <Field label="WhatsApp number" htmlFor="lead-whatsapp">
-          <div className="flex">
+          <div className="flex h-11">
             <CountryCodeSelect value={countryCode} onChange={setCountryCode} id="lead-country" />
             <input
               id="lead-whatsapp"
@@ -108,10 +127,25 @@ export function LeadCaptureCard() {
               value={whatsapp}
               onChange={(e) => setWhatsapp(e.target.value.replace(/[^0-9 ]/g, ''))}
               placeholder="712 345 678"
-              className="w-full rounded-r-lg border border-[#d9d0e6] bg-[#fbf9fc] px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#9483bb] focus:z-10"
+              className="h-full w-full rounded-r-lg border border-[#d9d0e6] bg-[#fbf9fc] px-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#9483bb] focus:z-10"
             />
           </div>
         </Field>
+
+        <div className="space-y-2 pt-1">
+          <ConsentCheckbox
+            id="lead-email-consent"
+            checked={emailConsent}
+            onChange={setEmailConsent}
+            label="I agree to let Builds By Zainab reach out to me via email regarding more of her products and services."
+          />
+          <ConsentCheckbox
+            id="lead-whatsapp-consent"
+            checked={whatsappConsent}
+            onChange={setWhatsappConsent}
+            label="I agree to let Builds By Zainab reach out to me via WhatsApp regarding more of her products and services."
+          />
+        </div>
 
         {status === 'error' && (
           <p className="text-sm text-[#a33a3a]" role="alert">
@@ -158,5 +192,30 @@ function Field({
       </label>
       {children}
     </div>
+  )
+}
+
+function ConsentCheckbox({
+  id,
+  checked,
+  onChange,
+  label,
+}: {
+  id: string
+  checked: boolean
+  onChange: (value: boolean) => void
+  label: string
+}) {
+  return (
+    <label htmlFor={id} className="flex items-start gap-2.5 text-xs text-[#5c5468]">
+      <input
+        id={id}
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+        className="mt-0.5 h-4 w-4 shrink-0 rounded border-[#d9d0e6] text-[#9483bb] focus:outline-none focus:ring-2 focus:ring-[#9483bb]"
+      />
+      <span>{label}</span>
+    </label>
   )
 }

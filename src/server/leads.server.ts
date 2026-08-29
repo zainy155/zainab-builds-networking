@@ -7,6 +7,8 @@ export interface LeadInput {
   businessTitle: string;
   whatsappCountryCode: string;
   whatsappNumber: string;
+  emailConsent: boolean;
+  whatsappConsent: boolean;
 }
 
 export async function saveLead(input: LeadInput) {
@@ -18,6 +20,8 @@ export async function saveLead(input: LeadInput) {
       businessTitle: input.businessTitle,
       whatsappCountryCode: input.whatsappCountryCode,
       whatsappNumber: input.whatsappNumber,
+      emailConsent: input.emailConsent,
+      whatsappConsent: input.whatsappConsent,
     })
     .returning();
   return row;
