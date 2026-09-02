@@ -34,8 +34,8 @@ export default function LeadCaptureCard() {
         name: form.name,
         email: form.email,
         businessTitle: form.businessTitle,
-        whatsappCountryCode: form.whatsappNumber ? form.whatsappCountryCode : '',
-        whatsappNumber: form.whatsappNumber || '',
+        whatsappCountryCode: form.whatsappNumber ? form.whatsappCountryCode : '+000',
+        whatsappNumber: form.whatsappNumber || 'N/A',
       }
 
       const res = await fetch(FUNCTION_URL, {
