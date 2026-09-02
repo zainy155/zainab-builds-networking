@@ -30,10 +30,18 @@ export default function LeadCaptureCard() {
     setErrorMessage(null)
 
     try {
+      const submitData = {
+        name: form.name,
+        email: form.email,
+        businessTitle: form.businessTitle,
+        whatsappCountryCode: form.whatsappNumber ? form.whatsappCountryCode : '',
+        whatsappNumber: form.whatsappNumber || '',
+      }
+
       const res = await fetch(FUNCTION_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(submitData),
       })
       const data: SubmitLeadResponse = await res.json()
 
