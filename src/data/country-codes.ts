@@ -5,9 +5,9 @@ export interface CountryCode {
 }
 
 export const COUNTRY_CODES: CountryCode[] = [
+  { code: "AE", dial: "+971", flag: "🇦🇪" },
   { code: "US", dial: "+1", flag: "🇺🇸" },
   { code: "GB", dial: "+44", flag: "🇬🇧" },
-  { code: "AE", dial: "+971", flag: "🇦🇪" },
   { code: "SA", dial: "+966", flag: "🇸🇦" },
   { code: "PK", dial: "+92", flag: "🇵🇰" },
   { code: "IN", dial: "+91", flag: "🇮🇳" },

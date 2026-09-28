@@ -9,7 +9,8 @@ const LeadSchema = z.object({
   email: z.string().email(),
   businessTitle: z.string().min(1).max(200),
   whatsappCountryCode: z.string().min(1).max(6),
-  whatsappNumber: z.string().min(4).max(20),
+  // Optional: blank numbers are stored as "N/A".
+  whatsappNumber: z.string().max(20).optional().default(""),
   emailConsent: z.boolean().default(false),
   whatsappConsent: z.boolean().default(false),
   // Honeypot: real users never see or fill this field. Bots that auto-fill every
@@ -44,14 +45,17 @@ export const submitLead = createServerFn({ method: "POST" })
       throw new Error("Too many requests — please try again later.");
     }
 
+    const whatsappNumber = data.whatsappNumber.trim();
+    const hasWhatsapp = whatsappNumber.replace(/\D/g, "").length >= 4;
+
     await saveLead({
       name: data.name,
       email: data.email,
       businessTitle: data.businessTitle,
-      whatsappCountryCode: data.whatsappCountryCode,
-      whatsappNumber: data.whatsappNumber,
+      whatsappCountryCode: hasWhatsapp ? data.whatsappCountryCode : "N/A",
+      whatsappNumber: hasWhatsapp ? whatsappNumber : "N/A",
       emailConsent: data.emailConsent,
-      whatsappConsent: data.whatsappConsent,
+      whatsappConsent: hasWhatsapp && data.whatsappConsent,
     });
     const emailResult = await sendDownloadEmail(data.email, data.name);
     return { ok: true, emailSent: emailResult.sent };

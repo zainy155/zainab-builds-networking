@@ -1,206 +1,250 @@
 import { createFileRoute } from '@tanstack/react-router'
-import {
-  ArrowRight,
-  Compass,
-  FileStack,
-  Radar,
-  Sparkles,
-  UserSearch,
-} from 'lucide-react'
 import { LeadCaptureCard } from '../components/LeadCaptureCard'
 
 export const Route = createFileRoute('/')({
   component: Home,
 })
 
-const INTENTS = [
-  { name: 'Job search', question: 'Is this a good moment to pursue this team, and who decides?' },
-  { name: 'Client prospecting', question: 'Is this a live opportunity, what triggered it, and who owns the budget?' },
-  { name: 'Partner BD', question: 'What partnership shape fits how they already partner, and is the slot taken?' },
-  { name: 'Investor outreach', question: 'Does the thesis fit, are they deploying, and is there a conflict?' },
-  { name: 'Talent sourcing', question: 'Is this team stable or loosening, and where is the movable talent?' },
-]
-
 const FEATURES = [
   {
-    icon: <Radar size={22} />,
-    title: 'Company momentum mapping',
+    icon: '🏢',
+    tint: 'bg-brand-50',
+    title: 'Research any company',
     description:
-      "Runs /networking:research-companies to surface hiring velocity, funding signals, and a ranked people map for the account you're chasing.",
+      'Point it at a company and get a momentum read: what triggered the moment, who owns the budget or the decision, and whether now is the right time to reach out.',
   },
   {
-    icon: <UserSearch size={22} />,
-    title: 'Contact-level engagement tips',
+    icon: '🧭',
+    tint: 'bg-accent-100',
+    title: 'Map the right people',
     description:
-      '/networking:research-contacts turns public activity on a named person into specific things worth mentioning when you reach out.',
+      'It maps the people inside a target department and turns their public activity into concrete engagement tips — never guessed emails, never drafted messages.',
   },
   {
-    icon: <Compass size={22} />,
-    title: 'Intent-framed everywhere',
+    icon: '🎯',
+    tint: 'bg-brand-50',
+    title: 'Shaped by your intent',
     description:
-      'Five presets ship out of the box, and free-form intents get their own derived profile — the plugin states it back before it runs.',
+      'Job search, client prospecting, partner BD, investor outreach, or talent sourcing — five presets ship in, and anything you describe in your own words works too.',
   },
   {
-    icon: <Sparkles size={22} />,
-    title: 'Learns your preferences',
+    icon: '🔁',
+    tint: 'bg-accent-100',
+    title: 'Gets sharper every run',
     description:
-      '/networking:feedback teaches the plugin what to do differently, and your last intent becomes the remembered default.',
+      'Tell it what missed the mark in plain language and it drafts a scoped, testable rule from the correction — narrow rules that age well, not blanket instructions.',
   },
   {
-    icon: <FileStack size={22} />,
-    title: 'Chat answer + a doc you keep',
+    icon: '🧠',
+    tint: 'bg-brand-50',
+    title: 'Remembers who you are',
     description:
-      'Every run produces a fast chat read plus a timestamped .docx, headered with the intent that produced it.',
+      'Drop your CV or a note on what you sell into the project, and every brief gets judged against your actual background instead of listing signals and leaving the call to you.',
+  },
+  {
+    icon: '📄',
+    tint: 'bg-accent-100',
+    title: 'A brief you can act on',
+    description:
+      'Every run returns a fast chat answer plus a timestamped Word document — judge it in chat, keep the document, share it with your team.',
+  },
+]
+
+const STEPS = [
+  {
+    title: 'Install in seconds',
+    description: 'Upload the plugin in Claude, or import it in ChatGPT Desktop / Codex CLI.',
+  },
+  {
+    title: 'Pick your intent',
+    description:
+      'Job search, client prospecting, partner BD, investor outreach, talent sourcing — or describe your own.',
+  },
+  {
+    title: 'Start a run',
+    description: '"Research Acme Corp for client prospecting, engineering team, Dubai office."',
+  },
+  {
+    title: 'Get a brief, keep the doc',
+    description: 'A chat answer first, then a timestamped Word document named for the subject.',
   },
 ]
 
 function Home() {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen bg-white">
+      <BrandBanner />
       <Nav />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden px-4 pt-16 pb-24 sm:pt-20">
-        <div
-          className="pointer-events-none absolute -top-32 right-[-10%] h-[420px] w-[420px] rounded-full opacity-40 blur-3xl"
-          style={{ background: 'radial-gradient(circle, #9483bb, transparent 70%)' }}
-        />
-        <div
-          className="pointer-events-none absolute top-40 left-[-15%] h-[380px] w-[380px] rounded-full opacity-30 blur-3xl"
-          style={{ background: 'radial-gradient(circle, #9bbfc7, transparent 70%)' }}
-        />
-
-        <div className="relative mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-          <div className="rise-in">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#e4ddf0] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#6f5a99]">
-              A Claude Code &amp; Codex CLI plugin
-            </span>
-            <h1 className="font-display mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-[#241f33] sm:text-6xl">
-              Know the room
-              <br />
-              before you <span className="text-[#8b6fb3]">walk in.</span>
+      <main>
+        {/* Hero */}
+        <section className="relative overflow-hidden bg-gradient-to-b from-brand-50 via-white to-white">
+          <div className="pointer-events-none absolute -top-24 left-1/4 h-96 w-[36rem] rounded-full bg-brand-200/40 blur-3xl" />
+          <div className="pointer-events-none absolute -top-16 right-1/4 h-80 w-[32rem] rounded-full bg-accent-300/40 blur-3xl" />
+          <div className="relative mx-auto max-w-6xl px-6 pb-24 pt-20 text-center sm:pt-28">
+            <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-1.5 text-xs font-semibold text-brand-700 shadow-card">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
+              Built for Claude, ChatGPT &amp; Codex
+            </div>
+            <h1 className="mx-auto max-w-3xl text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+              Know exactly who to talk to
+              <span className="block text-brand-600">before you send the first message</span>
             </h1>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-[#4a4356]">
-              Networking maps a company&apos;s momentum and the people inside it, then hands
-              you engagement tips shaped by <em>why</em> you&apos;re reaching out — job
-              search, prospecting, partnerships, fundraising, or hiring.
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
+              Networking is an AI skill pack that researches a company, maps the people inside
+              it, and turns their public activity into engagement tips — for job search, client
+              prospecting, partnerships, investor outreach, or talent sourcing. It reads
+              what&apos;s public. It never posts, messages, or writes your outreach for you.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
                 href="#get-plugin"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#241f33] px-7 py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+                className="w-full rounded-xl bg-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-lift transition hover:bg-brand-700 sm:w-auto"
               >
-                Get the plugin free <ArrowRight size={16} />
+                Get the plugin — free
               </a>
               <a
-                href="#features"
-                className="inline-flex items-center justify-center rounded-xl border border-[#d9d0e6] bg-white px-7 py-3.5 text-sm font-semibold text-[#241f33] transition hover:border-[#9483bb]"
+                href="#how-it-works"
+                className="w-full rounded-xl border border-gray-200 bg-white px-7 py-3.5 text-base font-semibold text-gray-700 transition hover:border-gray-300 sm:w-auto"
               >
-                See what it does
+                See how it works
               </a>
             </div>
-            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-[#5c5468]">
-              <span>5 built-in intents</span>
-              <span className="text-[#d9d0e6]">·</span>
-              <span>3 skills</span>
-              <span className="text-[#d9d0e6]">·</span>
-              <span>Docs you keep</span>
+            <p className="mt-4 text-sm text-gray-500">
+              Two-minute setup · Works in Claude, ChatGPT Desktop &amp; Codex CLI
+            </p>
+          </div>
+        </section>
+
+        {/* Features */}
+        <section id="features" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-brand-600">
+              What you get
+            </h2>
+            <p className="mt-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Everything you need to reach out well-informed
+            </p>
+          </div>
+          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {FEATURES.map((f) => (
+              <div
+                key={f.title}
+                className="rounded-2xl border border-gray-100 bg-white p-6 shadow-card transition hover:-translate-y-0.5 hover:shadow-lift"
+              >
+                <div
+                  className={`flex h-11 w-11 items-center justify-center rounded-xl text-xl ${f.tint}`}
+                >
+                  {f.icon}
+                </div>
+                <h3 className="mt-4 text-lg font-semibold text-gray-900">{f.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-gray-600">{f.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* How it works */}
+        <section id="how-it-works" className="scroll-mt-20 bg-gray-50 py-24">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-brand-600">
+                How it works
+              </h2>
+              <p className="mt-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                From install to insight in one prompt
+              </p>
+            </div>
+            <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {STEPS.map((s, i) => (
+                <div key={s.title}>
+                  <div className="text-3xl font-bold text-accent-300">
+                    {String(i + 1).padStart(2, '0')}
+                  </div>
+                  <h3 className="mt-2 text-base font-semibold text-gray-900">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-600">{s.description}</p>
+                </div>
+              ))}
             </div>
           </div>
+        </section>
 
-          <div className="rise-in [animation-delay:120ms]">
+        {/* Lead capture */}
+        <section
+          id="get-plugin"
+          className="scroll-mt-20 bg-gradient-to-b from-white via-brand-50 to-accent-50 py-24"
+        >
+          <div className="mx-auto max-w-xl px-6">
             <LeadCaptureCard />
           </div>
-        </div>
-      </section>
-
-      {/* Intent strip */}
-      <section className="border-y border-[#e4ddf0] bg-white/60 py-10 px-4">
-        <div className="mx-auto max-w-6xl">
-          <p className="mb-5 text-center text-xs font-semibold uppercase tracking-wide text-[#8b8296]">
-            Same company, different lens
-          </p>
-          <div className="flex gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-5 sm:gap-4 sm:overflow-visible">
-            {INTENTS.map((intent) => (
-              <div
-                key={intent.name}
-                className="min-w-[220px] rounded-xl border border-[#e4ddf0] bg-[#fbf9fc] p-4 sm:min-w-0"
-              >
-                <p className="mb-1.5 text-sm font-semibold text-[#6f5a99]">{intent.name}</p>
-                <p className="text-xs leading-relaxed text-[#5c5468]">{intent.question}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section id="features" className="px-4 py-24">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-14 max-w-xl">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#9483bb]">
-              What&apos;s inside
-            </p>
-            <h2 className="font-display text-3xl font-bold text-[#241f33] sm:text-4xl">
-              Built for the ten minutes before a call
-            </h2>
-          </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {FEATURES.map((feature, i) => (
-              <div
-                key={feature.title}
-                className={`rounded-2xl border border-[#e4ddf0] bg-white p-6 transition hover:-translate-y-1 hover:shadow-[0_20px_40px_-24px_rgba(94,73,140,0.35)] ${
-                  i === 0 ? 'sm:col-span-2 lg:col-span-1' : ''
-                }`}
-              >
-                <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#f4f1f9] text-[#6f5a99]">
-                  {feature.icon}
-                </div>
-                <h3 className="mb-2 text-lg font-semibold text-[#241f33]">{feature.title}</h3>
-                <p className="text-sm leading-relaxed text-[#5c5468]">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       <Footer />
     </div>
   )
 }
 
+function BrandBanner() {
+  return (
+    <div className="w-full bg-white pt-6">
+      <svg
+        viewBox="0 0 1140 210"
+        className="mx-auto w-full max-w-3xl px-6"
+        role="img"
+        aria-label="Builds By Zainab"
+      >
+        <defs>
+          <path id="brand-arc" d="M 20 190 Q 570 20 1120 190" fill="none" />
+        </defs>
+        <text fill="#5B1A3A" fontSize="92" style={{ fontFamily: 'Yellowtail, cursive' }}>
+          <textPath href="#brand-arc" startOffset="50%" textAnchor="middle">
+            Builds By Zainab
+          </textPath>
+        </text>
+      </svg>
+    </div>
+  )
+}
+
 function Nav() {
   return (
-    <header className="relative z-10 flex items-center justify-between px-4 py-6 sm:px-8">
-      <div className="flex items-center gap-2">
-        <span className="font-display text-lg font-bold text-[#241f33]">Networking</span>
-        <span className="rounded-full bg-[#f4f1f9] px-2.5 py-0.5 text-[11px] font-semibold text-[#6f5a99]">
-          for Claude
-        </span>
+    <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/80 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <div className="flex items-center gap-2">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">
+            N
+          </div>
+          <span className="text-base font-semibold text-gray-900">Networking</span>
+          <span className="ml-1 rounded-full bg-accent-100 px-2 py-0.5 text-xs font-medium text-accent-700">
+            Claude Plugin
+          </span>
+        </div>
+        <nav className="hidden items-center gap-8 text-sm font-medium text-gray-600 sm:flex">
+          <a href="#features" className="transition hover:text-gray-900">
+            Features
+          </a>
+          <a href="#how-it-works" className="transition hover:text-gray-900">
+            How it works
+          </a>
+        </nav>
+        <a
+          href="#get-plugin"
+          className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-card transition hover:bg-brand-700"
+        >
+          Get the plugin
+        </a>
       </div>
-      <a
-        href="#get-plugin"
-        className="rounded-lg border border-[#d9d0e6] bg-white px-4 py-2 text-sm font-semibold text-[#241f33] transition hover:border-[#9483bb]"
-      >
-        Get the plugin
-      </a>
     </header>
   )
 }
 
 function Footer() {
   return (
-    <footer className="border-t border-[#e4ddf0] px-4 py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 sm:flex-row sm:justify-between">
-        <img
-          src="/brand/build-by-zainab-logo.png"
-          alt="Build by Zainab"
-          className="h-8 w-auto opacity-90"
-        />
-        <p className="text-xs text-[#8b8296]">
-          &copy; 2026 Build by Zainab. Networking is an independent plugin, not affiliated
-          with Anthropic or OpenAI.
-        </p>
+    <footer className="border-t border-gray-100 bg-white py-10">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-sm text-gray-500 sm:flex-row">
+        <span>© 2026 Networking Plugin. Built for Claude, ChatGPT &amp; Codex.</span>
+        <span>Reads what&apos;s public. Never posts, messages, or writes your outreach.</span>
       </div>
     </footer>
   )

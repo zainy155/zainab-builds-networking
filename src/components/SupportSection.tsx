@@ -14,14 +14,14 @@ export function SupportSection() {
   }
 
   return (
-    <section className="mt-14 rounded-2xl border border-[#e4ddf0] bg-[#fbf9fc] p-6 sm:p-8">
+    <section className="mt-14 rounded-2xl border border-gray-100 bg-gray-50 p-6 sm:p-8">
       <div className="flex items-center gap-2 mb-1">
-        <Heart size={18} className="text-[#9483bb]" />
-        <h3 className="font-display text-lg font-semibold text-[#241f33]">
+        <Heart size={18} className="text-brand-500" />
+        <h3 className="text-lg font-semibold text-gray-900">
           Support the Developer
         </h3>
       </div>
-      <p className="text-sm text-[#5c5468] mb-6 max-w-md">
+      <p className="text-sm text-gray-600 mb-6 max-w-md">
         Networking is built and maintained by one person. If it saved you a research
         afternoon, a tip keeps new skills shipping.
       </p>
@@ -30,14 +30,14 @@ export function SupportSection() {
         href={PAYPAL_BASE}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 rounded-lg bg-[#241f33] px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+        className="inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
       >
         <Coffee size={16} />
         Buy Me a Coffee
       </a>
 
       <div className="mt-7">
-        <p className="text-xs font-semibold uppercase tracking-wide text-[#8b8296] mb-3">
+        <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">
           Pledge a custom amount
         </p>
         <div className="flex flex-wrap gap-2 mb-3">
@@ -47,7 +47,7 @@ export function SupportSection() {
               href={pledgeUrl(amount)}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-[#d9d0e6] bg-white px-4 py-1.5 text-sm font-semibold text-[#6f5a99] transition hover:border-[#9483bb] hover:bg-[#f4f1f9]"
+              className="rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-semibold text-brand-700 transition hover:border-brand-300 hover:bg-brand-50"
             >
               ${amount}
             </a>
@@ -55,7 +55,7 @@ export function SupportSection() {
         </div>
         <div className="flex gap-2 max-w-xs">
           <div className="relative flex-1">
-            <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[#8b8296]">
+            <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
               $
             </span>
             <input
@@ -65,7 +65,7 @@ export function SupportSection() {
               placeholder="Custom"
               value={customAmount}
               onChange={(e) => setCustomAmount(e.target.value)}
-              className="w-full rounded-lg border border-[#d9d0e6] bg-white py-2 pl-6 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#9483bb]"
+              className="w-full rounded-lg border border-gray-200 bg-white py-2 pl-6 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-100"
             />
           </div>
           <a
@@ -76,7 +76,7 @@ export function SupportSection() {
             onClick={(e) => {
               if (!customAmount) e.preventDefault()
             }}
-            className="rounded-lg bg-[#9bbfc7] px-4 py-2 text-sm font-semibold text-[#1c3a40] transition hover:bg-[#84acb5] disabled:opacity-50"
+            className="rounded-lg bg-accent-300 px-4 py-2 text-sm font-semibold text-accent-700 transition hover:bg-accent-100 disabled:opacity-50"
           >
             Pledge
           </a>

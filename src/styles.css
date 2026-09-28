@@ -1,40 +1,38 @@
 @import "tailwindcss" source("../");
 
-:root {
-  --plum: #9483bb;
-  --plum-deep: #6f5a99;
-  --seafoam: #9bbfc7;
-  --seafoam-deep: #6f9aa4;
-  --ink: #241f33;
-  --paper: #fbf9fc;
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Yellowtail", cursive;
+
+  --color-brand-50: #f5f3fa;
+  --color-brand-100: #eae6f4;
+  --color-brand-200: #d3cae9;
+  --color-brand-300: #b6a8d6;
+  --color-brand-500: #9483bb;
+  --color-brand-600: #7a68a3;
+  --color-brand-700: #625387;
+
+  --color-accent-50: #f2f7f8;
+  --color-accent-100: #e3edef;
+  --color-accent-300: #9bbfc7;
+  --color-accent-700: #40656d;
+
+  --shadow-card: 0 1px 2px #1018280f, 0 1px 3px #1018281a;
+  --shadow-lift: 0 12px 32px -8px #9483bb59;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  @apply m-0;
-  background-color: var(--paper);
-  color: var(--ink);
-  font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  @apply m-0 bg-white font-sans text-gray-900;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, .font-display {
-  font-family: "Space Grotesk", "Manrope", sans-serif;
-}
-
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-.grain-overlay {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.035;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 @keyframes rise-in {

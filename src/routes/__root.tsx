@@ -15,12 +15,12 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'Networking — the intent-aware research plugin for Claude',
+        title: 'Networking — Claude Plugin',
       },
       {
         name: 'description',
         content:
-          'Networking is a Claude plugin that maps a company\'s momentum and people, then hands you engagement tips shaped by why you\'re reaching out.',
+          'Research companies, map contacts, and get engagement tips before you reach out.',
       },
     ],
     links: [
@@ -28,7 +28,7 @@ export const Route = createRootRoute({
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap',
+        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Yellowtail&display=swap',
       },
     ],
   }),
@@ -42,7 +42,6 @@ function RootDocument({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <div className="grain-overlay" aria-hidden="true" />
         {children}
         <Scripts />
       </body>

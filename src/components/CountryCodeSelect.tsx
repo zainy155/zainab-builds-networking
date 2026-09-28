@@ -15,7 +15,7 @@ export function CountryCodeSelect({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       aria-label="Country code"
-      className="h-full shrink-0 rounded-l-lg border border-r-0 border-[#d9d0e6] bg-[#f4f1f9] px-2 text-sm font-medium text-[#241f33] focus:outline-none focus:ring-2 focus:ring-[#9483bb] focus:z-10"
+      className="h-11 shrink-0 rounded-lg border border-gray-200 bg-white px-3 text-sm font-medium text-gray-700 transition hover:border-gray-300 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100"
     >
       {COUNTRY_CODES.map((c) => (
         <option key={c.code} value={c.dial}>
